@@ -23,8 +23,16 @@ export const GlobalState = createContext(initialState);
 
 export const GlobalProvider = ({ children }) => {
   const [trans, setTrans] = useState(initialState);
+
+  const formatMoney = (money) => {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+    }).format(money);
+  };
+
   const addTransaction = (txt, amount, posneg) => {
-    console.log(`running addTransaction(${txt},${amount},${posneg})`);
+    //console.log(`running addTransaction(${txt},${amount},${posneg})`);
 
     let newArray = [
       ...trans,
@@ -35,7 +43,9 @@ export const GlobalProvider = ({ children }) => {
   };
 
   return (
-    <GlobalState.Provider value={{ transactions: trans, addTransaction }}>
+    <GlobalState.Provider
+      value={{ transactions: trans, addTransaction, formatMoney }}
+    >
       {children}
     </GlobalState.Provider>
   );

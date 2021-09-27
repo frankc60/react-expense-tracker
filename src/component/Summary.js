@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { GlobalState } from "../context/GlobalState";
 
 export const Summary = () => {
-  const { transactions } = useContext(GlobalState);
+  const { transactions, formatMoney } = useContext(GlobalState);
 
   let negAmounts = transactions.map((item) => {
     return item.amount < 0 ? item.amount : null;
@@ -19,7 +19,8 @@ export const Summary = () => {
 
   return (
     <div>
-      Summary - Expenses: ${negtotal} - Income: ${postotal}
+      <h3>Summary</h3>
+      Expenses: {formatMoney(negtotal)} Income: {formatMoney(postotal)}
     </div>
   );
 };
