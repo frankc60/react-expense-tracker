@@ -1,5 +1,5 @@
 import React from "react";
 
 export const Title = () => {
-  return <div>Expense App</div>;
+  return <h2>Expense App</h2>;
 };

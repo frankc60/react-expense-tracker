@@ -13,3 +13,18 @@ color: #000
   background-color: #fff;
   color: green
 }
+
+.main-container {
+background-color: wheat;
+width: 87%;
+margin: auto;
+text-align: center;
+
+
+}
+
+#root {
+
+  padding: 0.1rem;
+
+}

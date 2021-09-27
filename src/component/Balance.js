@@ -14,5 +14,5 @@ export const Balance = () => {
   let total = amounts.reduce(reducer);
 
   //output total amount
-  return <div>Balance: {formatMoney(total)}</div>;
+  return <h3>Balance: {formatMoney(total)}</h3>;
 };
