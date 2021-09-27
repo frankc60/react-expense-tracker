@@ -1,0 +1,15 @@
+.App {
+  text-align: center;
+}
+
+
+.transactions-amounts-negative {
+background-color: red;
+color: #000
+
+}
+
+.transactions-amounts-positive {
+  background-color: #fff;
+  color: green
+}
