@@ -21,14 +21,15 @@ export const Summary = () => {
     <>
       {/* <h4 className='text-center'>Summary</h4> */}
 
-      <div className='row justify-content-center'>
-        <div className='col-3 mx-auto'>
+      <div className='row'>
+        <div className='col-md-4 text-end'>
           <h5>
             Income
             <span className='badge bg-success'>{formatMoney(postotal)}</span>
           </h5>
         </div>
-        <div className='col-3 mx-auto'>
+        <div className='col'></div>
+        <div className='col-md-4'>
           <h5>
             Expense
             <span className='badge bg-danger'>{formatMoney(negtotal)}</span>
