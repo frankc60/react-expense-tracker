@@ -10,7 +10,7 @@ import { GlobalProvider } from "./context/GlobalState";
 function App() {
   return (
     <GlobalProvider>
-      <div className='main-container'>
+      <div className='my-3 bg-secondary text-white border border-dark rounded p-3'>
         <Title />
         <Balance />
         <Summary />

@@ -18,9 +18,12 @@ export const Summary = () => {
   let postotal = posAmounts.reduce(reducer);
 
   return (
-    <div>
-      <h3>Summary</h3>
-      Expenses: {formatMoney(negtotal)} Income: {formatMoney(postotal)}
-    </div>
+    <>
+      <h4 className='text-center'>Summary</h4>
+      <div className='row justify-content-center'>
+        <div className='col-3 mx-auto'>Income {formatMoney(postotal)}</div>
+        <div className='col-3 mx-auto'>Expense {formatMoney(negtotal)}</div>
+      </div>
+    </>
   );
 };

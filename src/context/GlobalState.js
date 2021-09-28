@@ -9,6 +9,27 @@ const localStore = localStorage.getItem(LOCALSTORAGE_KEY);
 //localStorage.clear();
 
 console.log(`localStore: ${localStore}`);
+
+let initialStateLength = 0;
+
+let dummyData = [
+  {
+    trans: "coffee",
+    amount: -1.25,
+    id: "aaa",
+  },
+  {
+    trans: "fuel",
+    amount: -2.5,
+    id: "bbb",
+  },
+  {
+    trans: "Scratch Ticket",
+    amount: 5,
+    id: "ccc",
+  },
+];
+
 let initialState = [];
 if (localStore) {
   //localstorage is stored as a string, so need to JSON parse.
@@ -16,23 +37,9 @@ if (localStore) {
 } else {
   //set some dummy data, as nothing stored.
   console.log("localstorage doesnt exists");
-  initialState = [
-    {
-      trans: "coffee",
-      amount: -1.25,
-      id: "aaa",
-    },
-    {
-      trans: "fuel",
-      amount: -2.5,
-      id: "bbb",
-    },
-    {
-      trans: "Scratch Ticket",
-      amount: 5,
-      id: "ccc",
-    },
-  ];
+  initialState = dummyData;
+  console.log("initalState length " + initialState.length);
+  initialStateLength = initialState.length;
 }
 
 export const GlobalState = createContext(initialState);
@@ -41,10 +48,12 @@ export const GlobalProvider = ({ children }) => {
   const [trans, setTrans] = useState(initialState);
 
   useEffect(() => {
+    //console.log(`trans len ${trans.length}`);
     //set localstorage, just stringify as trans is an array of objects.
-    localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(trans));
-  });
-  //ss
+    if (trans.length > initialStateLength)
+      localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(trans));
+  }, [trans]);
+
   const formatMoney = (money) => {
     return new Intl.NumberFormat("en-US", {
       style: "currency",
@@ -65,9 +74,20 @@ export const GlobalProvider = ({ children }) => {
     // localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(newArray));
   };
 
+  const clearTransactions = () => {
+    localStorage.clear();
+    setTrans(dummyData);
+    console.log("clearTransaction()");
+  };
+
   return (
     <GlobalState.Provider
-      value={{ transactions: trans, addTransaction, formatMoney }}
+      value={{
+        transactions: trans,
+        addTransaction,
+        formatMoney,
+        clearTransactions,
+      }}
     >
       {children}
     </GlobalState.Provider>
