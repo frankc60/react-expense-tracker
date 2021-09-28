@@ -14,5 +14,13 @@ export const Balance = () => {
   let total = amounts.reduce(reducer);
 
   //output total amount
-  return <h4 className='text-center'>Balance: {formatMoney(total)}</h4>;
+  return (
+    <div className='text-center display-6'>
+      Balance:{" "}
+      <span className={total > 0 ? "badge bg-success" : "badge bg-danger"}>
+        {" "}
+        {formatMoney(total)}
+      </span>
+    </div>
+  );
 };

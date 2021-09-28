@@ -19,10 +19,21 @@ export const Summary = () => {
 
   return (
     <>
-      <h4 className='text-center'>Summary</h4>
+      {/* <h4 className='text-center'>Summary</h4> */}
+
       <div className='row justify-content-center'>
-        <div className='col-3 mx-auto'>Income {formatMoney(postotal)}</div>
-        <div className='col-3 mx-auto'>Expense {formatMoney(negtotal)}</div>
+        <div className='col-3 mx-auto'>
+          <h5>
+            Income
+            <span className='badge bg-success'>{formatMoney(postotal)}</span>
+          </h5>
+        </div>
+        <div className='col-3 mx-auto'>
+          <h5>
+            Expense
+            <span className='badge bg-danger'>{formatMoney(negtotal)}</span>
+          </h5>
+        </div>
       </div>
     </>
   );
