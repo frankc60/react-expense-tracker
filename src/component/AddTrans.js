@@ -1,4 +1,5 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
+import { useEffect } from "react/cjs/react.development";
 import { GlobalState } from "../context/GlobalState";
 
 export const AddTrans = () => {
@@ -6,6 +7,11 @@ export const AddTrans = () => {
   const [text, setText] = useState("");
   const [amount, setAmount] = useState("");
   const [posneg, setPosneg] = useState("expense");
+  const descInputRef = useRef();
+
+  useEffect(() => {
+    descInputRef.current.focus();
+  }, [addTransaction]);
 
   const onSubmitHandle = (e) => {
     e.preventDefault();
@@ -33,6 +39,7 @@ export const AddTrans = () => {
           <div className='col'>
             <input
               type='text'
+              ref={descInputRef}
               onChange={onChangeTxtHandler}
               placeholder='Description'
               value={text}
